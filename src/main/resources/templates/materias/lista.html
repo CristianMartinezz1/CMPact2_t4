@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Lista de materias')}"></head>
+<body>
+<div th:replace="~{fragments :: encabezado}"></div>
+<main>
+    <div class="card">
+        <h2>Lista de materias</h2>
+
+        <!-- @RequestParam: cada chip filtra con ?categoria=... -->
+        <p>Filtrar por categoría:</p>
+        <a class="chip" th:classappend="${categoriaSeleccionada == null} ? 'activo'" th:href="@{/materias}">Todas</a>
+        <a class="chip" th:each="cat : ${categorias}"
+           th:classappend="${cat == categoriaSeleccionada} ? 'activo'"
+           th:href="@{/materias(categoria=${cat})}" th:text="${cat}">Categoría</a>
+
+        <p th:if="${categoriaSeleccionada != null}">
+            Mostrando categoría: <strong th:text="${categoriaSeleccionada}">X</strong>
+            (<span th:text="${#lists.size(materias)}">0</span> resultados)
+        </p>
+
+        <table>
+            <thead>
+            <tr><th>ID</th><th>Materia</th><th>Categoría</th><th>Profesor</th><th>Créditos</th></tr>
+            </thead>
+            <tbody>
+            <!-- th:each recorre la lista que el controlador puso en el Model -->
+            <tr th:each="m : ${materias}">
+                <td th:text="${m.id}">1</td>
+                <!-- @PathVariable: enlace al detalle /materias/{id} -->
+                <td><a th:href="@{/materias/{id}(id=${m.id})}" th:text="${m.nombre}">Materia</a></td>
+                <td th:text="${m.categoria}">Categoría</td>
+                <td th:text="${m.profesor}">Profesor</td>
+                <td th:text="${m.creditos}">5</td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(materias)}">
+                <td colspan="5">No hay materias en esa categoría.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer th:replace="~{fragments :: pie}"></footer>
+</body>
+</html>

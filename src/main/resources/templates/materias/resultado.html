@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Materia guardada')}"></head>
+<body>
+<div th:replace="~{fragments :: encabezado}"></div>
+<main>
+    <div class="card">
+        <p class="ok">Materia recibida con @ModelAttribute y guardada.</p>
+        <table>
+            <tr><th>ID asignado</th><td th:text="${materia.id}">5</td></tr>
+            <tr><th>Nombre</th><td th:text="${materia.nombre}">Materia</td></tr>
+            <tr><th>Categoría</th><td th:text="${materia.categoria}">Categoría</td></tr>
+            <tr><th>Profesor</th><td th:text="${materia.profesor}">Profesor</td></tr>
+            <tr><th>Créditos</th><td th:text="${materia.creditos}">5</td></tr>
+        </table>
+        <p>
+            <a th:href="@{/materias/{id}(id=${materia.id})}">Ver detalle</a> ·
+            <a th:href="@{/materias}">Ver la lista completa</a> ·
+            <a th:href="@{/materias/nueva}">Agregar otra</a>
+        </p>
+    </div>
+</main>
+<footer th:replace="~{fragments :: pie}"></footer>
+</body>
+</html>

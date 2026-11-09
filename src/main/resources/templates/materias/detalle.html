@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Detalle de materia')}"></head>
+<body>
+<div th:replace="~{fragments :: encabezado}"></div>
+<main>
+    <div class="card" th:if="${materia != null}">
+        <h2 th:text="${materia.nombre}">Materia</h2>
+        <p>Detalle obtenido con <code>@PathVariable</code> (id = <span th:text="${materia.id}">1</span>)</p>
+        <table>
+            <tr><th>ID</th><td th:text="${materia.id}">1</td></tr>
+            <tr><th>Nombre</th><td th:text="${materia.nombre}">Materia</td></tr>
+            <tr><th>Categoría</th><td th:text="${materia.categoria}">Categoría</td></tr>
+            <tr><th>Profesor</th><td th:text="${materia.profesor}">Profesor</td></tr>
+            <tr><th>Créditos</th><td th:text="${materia.creditos}">5</td></tr>
+        </table>
+        <p><a th:href="@{/materias}">← Volver a la lista</a></p>
+    </div>
+    <div class="card" th:if="${materia == null}">
+        <p class="error">No existe una materia con id <span th:text="${idBuscado}">0</span>.</p>
+        <p><a th:href="@{/materias}">← Volver a la lista</a></p>
+    </div>
+</main>
+<footer th:replace="~{fragments :: pie}"></footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Agregar materia')}"></head>
+<body>
+<div th:replace="~{fragments :: encabezado}"></div>
+<main>
+    <div class="card">
+        <h2>Agregar materia</h2>
+        <!-- th:object enlaza el formulario con el MateriaDTO del Model;
+             al enviarlo, el controlador lo recibe con @ModelAttribute -->
+        <form th:action="@{/materias/nueva}" th:object="${materia}" method="post">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" th:field="*{nombre}" required>
+
+            <label for="categoria">Categoría</label>
+            <input type="text" id="categoria" th:field="*{categoria}" list="lista-categorias" required>
+            <datalist id="lista-categorias">
+                <option th:each="cat : ${categorias}" th:value="${cat}"></option>
+            </datalist>
+
+            <label for="profesor">Profesor</label>
+            <input type="text" id="profesor" th:field="*{profesor}" required>
+
+            <label for="creditos">Créditos</label>
+            <input type="number" id="creditos" th:field="*{creditos}" min="1" max="10" required>
+
+            <button type="submit">Guardar materia</button>
+        </form>
+    </div>
+</main>
+<footer th:replace="~{fragments :: pie}"></footer>
+</body>
+</html>
