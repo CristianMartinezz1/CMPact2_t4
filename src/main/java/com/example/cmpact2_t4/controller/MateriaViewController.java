@@ -20,12 +20,9 @@ public class MateriaViewController {
 
     private final MateriaService materiaService;
 
-    // @Value: lee propiedades personalizadas de application.properties
+    // @Value: lee una propiedad personalizada de application.properties
     @Value("${app.nombre-proyecto}")
     private String nombreProyecto;
-
-    @Value("${app.autor}")
-    private String autor;
 
     public MateriaViewController(MateriaService materiaService) {
         this.materiaService = materiaService;
@@ -35,7 +32,6 @@ public class MateriaViewController {
     @ModelAttribute
     public void datosComunes(Model model) {
         model.addAttribute("nombreProyecto", nombreProyecto);
-        model.addAttribute("autor", autor);
     }
 
     // a) Lista con th:each + @RequestParam opcional para filtrar por categoría

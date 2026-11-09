@@ -38,12 +38,12 @@ El servidor levanta en el puerto **8082** (la Actividad 1 usa el 8081). Abre htt
 | REST | POST | `/api/dto/materias` | Recibe un `MateriaDTO` en JSON con `@RequestBody` |
 | REST | GET | `/api/proyecto`, `/api/materias`, `/status` | Endpoints heredados de la Actividad 1 |
 
-`@Value` lee `app.nombre-proyecto` y `app.autor` de `application.properties`, y se muestran en el encabezado de todas las vistas.
+`@Value` lee la propiedad personalizada `app.nombre-proyecto` de `application.properties`, y se muestra como título en el encabezado de todas las vistas.
 
 ## Capturas de pantalla
 
 ### 1. Lista de materias con `th:each`
-`GET /materias`: el controlador pone la lista en el `Model` y la vista la recorre con `th:each`. El encabezado muestra los valores leídos con `@Value`.
+`GET /materias`: el controlador pone la lista en el `Model` y la vista la recorre con `th:each`. El título del encabezado es el valor leído con `@Value`.
 
 ![Lista con th:each](docs/capturas/01-lista-th-each.png)
 
