@@ -21,7 +21,9 @@ public class MateriaService {
         agregar(new MateriaDTO(0, "Programación Web", "Programación", "Profesor B", 5));
         agregar(new MateriaDTO(0, "Ingeniería de Software", "Sistemas", "Profesor C", 4));
         agregar(new MateriaDTO(0, "Administración de Bases de Datos", "Bases de Datos", "Profesor D", 5));
+         agregar(new MateriaDTO(0, "Graficacion", "Programación", "Profesor E", 5));
     }
+    
 
     public synchronized List<MateriaDTO> listar() {
         return List.copyOf(materias);
